@@ -1,0 +1,36 @@
+Number of worker process can be assigned manually 
+
+on top of nginx.conf file
+
+worker_processes 2;
+
+And worker process runs on a seperate CPU core
+So it won't be a good option to run 2 worker_processes on a single core processor machines 
+as 2 worker process would be running on a 50% utilisation
+
+We can know the number of cores the machines has by command
+
+lscpu
+
+
+We can also set worker_processes to auto as it would spin up the worker process as per the number of cores
+
+worker_processes auto;
+
+And in events section we can add worker_connections which are the number of connection each worker process can accept
+Or in layman terms no. of files which can be opened concurrently
+
+To get the limit use command
+
+ulimit -n
+>1024
+
+events{
+    worker_connections 1024
+}
+
+
+So max connections would be
+
+worker_processes * worker_connections = max_connections
+

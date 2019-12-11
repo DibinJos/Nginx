@@ -1,0 +1,25 @@
+ps -aux | grep nginx ------------> To chek for nginx services
+
+nginx -h ---------------------> Help
+
+nginx -s stop -------------------> Signal nginx to stop
+
+
+Get init script(https://www.nginx.com/resources/wiki/start/topics/examples/systemd/)
+
+Create a service file at  /lib/systemd/system/nginx.service
+
+And copy content
+Change /run to /var/run
+And sbin to bin
+
+systemctl start nginx
+
+systemctl status nginx
+
+systemctl enable nginx -------> starts the service for every reboot
+
+systemctl restart nginx --------------> stops the server and then restarts
+
+systemctl reload nginx --------------> Prevents downtime as it only stops older instance when new one ready to be up
+

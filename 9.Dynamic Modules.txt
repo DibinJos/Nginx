@@ -1,0 +1,28 @@
+Adding dynamic modules to the nginx
+
+Dynamic modules can only be added by rebuilding the Nginx
+
+In the extracted folder we need to configure the nginx
+
+To get all the config properties with which the Nginx was built
+
+nginx -V
+
+If we have to add dynamic module named --with-http_image_filter_module=dynamic
+(we can get the list of all by ./configure --help)
+(And all dynamic modules end with =dynamic e.g --with-http_image_filter_module=dynamic , so it can filtered by ./configure --help | grep dynamic)
+
+./configure <all the modules as installed previously(copy it from nginx -V)> --with-http_image_filter_module=dynamic --module-path=/etc/nginx/modules
+
+(Install sudo apt-get install libgd-dev for the http image filter package as it's a pre requisite)
+
+sudo systemctl reload nginx
+
+
+
+
+
+
+
+
+

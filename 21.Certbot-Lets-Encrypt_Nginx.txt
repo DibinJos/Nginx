@@ -1,0 +1,27 @@
+Install certbot
+
+cretbot certonly -d <your-domainname.com> To create only the certificates but not make any updates to the nginx file.
+certbot --nginx ----> To create certificates and also auto update the nginx file adding ssl ciphers and parametres
+
+
+Let's encrypt asks you to renew your certificates every 90 days
+
+And certbot helps to renew license using
+
+certbot renew
+
+To test the command 
+
+certbot renew --dry-run
+
+To run the certbot renew daily so that the certificates are renewed before expiry(renew command only renews when the certifacte is about to expire)
+
+crontab -e 
+
+In the editor
+
+@daily certbot renew
+
+To list all the task
+
+crontab -l

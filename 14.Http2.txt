@@ -1,0 +1,31 @@
+1.Binary Protocol   #Binaries are used in place of text
+2.Compresses Header 
+3.Persistent Connection #In place for 3 connection for 1 html, 1 css, 1 js files there is just one persistent connection
+4.Multiplex Streaming   #Multiple assets such as images(jpg,png),js files can be multiplxed and sent as singe binary stream
+5.Server Push      #Client can be informed 
+
+
+
+Adding dynamic module http2
+
+nginx -V
+
+./configure <all module> --with-http_v2_module
+
+make
+
+make install
+
+http2 only works in https so we need to create ssl certificates:
+
+To create ssl certificate as http2 is always https
+openssl req -x509 -days 10 -nodes -newkey rsa:2048 -keyout /etc/nginx/ssl/self.key -out /etc/nginx/ssl/self.crt
+
+
+And add :
+
+listen 443 ssl http2; 
+ssl_certificate /etc/nginx/ssl/self.crt;    #ssl certificate/keys generated using ssl
+ssl_certificate_key /etc/nginx/ssl/self.key; 
+
+To the configuration files
